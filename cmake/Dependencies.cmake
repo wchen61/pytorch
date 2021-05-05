@@ -1450,11 +1450,9 @@ if(CAFFE2_CMAKE_BUILDING_WITH_MAIN_REPO AND NOT INTERN_DISABLE_ONNX)
   endif()
   add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../third_party/foxi EXCLUDE_FROM_ALL)
 
-  add_definitions(-DONNX_NAMESPACE=${ONNX_NAMESPACE})
   if(NOT USE_SYSTEM_ONNX)
-    include_directories(${ONNX_INCLUDE_DIRS})
     # In mobile build we care about code size, and so we need drop
-    # everything (e.g. checker, optimizer) in onnx but the pb definition.
+    # everything (e.g. checker) in onnx but the pb definition.
     if(ANDROID OR IOS)
       caffe2_interface_library(onnx_proto onnx_library)
     else()
@@ -1482,7 +1480,13 @@ if(CAFFE2_CMAKE_BUILDING_WITH_MAIN_REPO AND NOT INTERN_DISABLE_ONNX)
     list(APPEND Caffe2_DEPENDENCY_LIBS onnx_proto onnx)
   endif()
   include_directories(${FOXI_INCLUDE_DIRS})
-  list(APPEND Caffe2_DEPENDENCY_LIBS foxi_loader)
+
+  add_definitions(-DONNX_NAMESPACE=${ONNX_NAMESPACE})
+  include_directories(SYSTEM ${PROJECT_SOURCE_DIR}/third_party/optimizer)
+  add_subdirectory("${CAFFE2_THIRD_PARTY_ROOT}/onnx_optimizer"
+                   "${CONFU_DEPENDENCIES_BINARY_DIR}/onnx_optimizer")
+  caffe2_interface_library(onnx_optimizer optimizer_library)
+  list(APPEND Caffe2_DEPENDENCY_LIBS foxi_loader onnx_optimizer)
   # Recover the build shared libs option.
   set(BUILD_SHARED_LIBS ${TEMP_BUILD_SHARED_LIBS})
 endif()
