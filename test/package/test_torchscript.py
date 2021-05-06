@@ -39,6 +39,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer = BytesIO()
         with PackageExporter(buffer, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod.pkl", scripted_mod)
 
         buffer.seek(0)
@@ -61,6 +62,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         filename = self.temp()
         with PackageExporter(filename, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod.pkl", scripted_mod)
 
         importer = PackageImporter(filename)
@@ -117,6 +119,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer = BytesIO()
         with PackageExporter(buffer, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod.pkl", scripted_mod)
 
         buffer.seek(0)
@@ -165,6 +168,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer = BytesIO()
         with PackageExporter(buffer, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod1.pkl", scripted_mod_0)
             e.save_pickle("res", "mod2.pkl", scripted_mod_1)
 
@@ -188,6 +192,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer = BytesIO()
         with PackageExporter(buffer, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod1.pkl", scripted_mod_0)
             e.save_pickle("res", "mod2.pkl", scripted_mod_1)
 
@@ -222,6 +227,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer = BytesIO()
         with PackageExporter(buffer, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod0.pkl", scripted_mod_0)
             e.save_pickle("res", "mod1.pkl", scripted_mod_1)
             e.save_pickle("res", "mod2.pkl", scripted_mod_0)
@@ -254,6 +260,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer_0 = BytesIO()
         with PackageExporter(buffer_0, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod1.pkl", scripted_mod_0)
 
         buffer_0.seek(0)
@@ -262,6 +269,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer_1 = BytesIO()
         with PackageExporter(buffer_1, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod1.pkl", scripted_mod_1)
             e.save_pickle("res", "mod2.pkl", loaded_module_0)
 
@@ -298,6 +306,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer_0 = BytesIO()
         with PackageExporter(buffer_0, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod1.pkl", scripted_mod_0)
 
         buffer_0.seek(0)
@@ -305,6 +314,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer_1 = BytesIO()
         with PackageExporter(buffer_1, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod1.pkl", scripted_mod_1)
 
         buffer_1.seek(0)
@@ -328,6 +338,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer = BytesIO()
         with PackageExporter(buffer, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "list.pkl", script_mods_list)
 
         buffer.seek(0)
@@ -352,6 +363,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer = BytesIO()
         with PackageExporter(buffer, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod1.pkl", mod1)
             e.save_pickle("res", "mod2.pkl", mod2)
 
@@ -381,6 +393,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer = BytesIO()
         with PackageExporter(buffer, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod.pkl", mod_parent)
 
         buffer.seek(0)
@@ -405,6 +418,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer = BytesIO()
         with PackageExporter(buffer, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "tensor", shared_tensor)
             e.save_pickle("res", "mod1.pkl", mod1)
             e.save_pickle("res", "mod2.pkl", mod2)
@@ -436,6 +450,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer = BytesIO()
         with PackageExporter(buffer, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod1.pkl", mod1)
 
         buffer.seek(0)
@@ -478,6 +493,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer_0 = BytesIO()
         with PackageExporter(buffer_0, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod1.pkl", mod1)
 
         buffer_0.seek(0)
@@ -486,6 +502,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer_1 = BytesIO()
         with PackageExporter(buffer_1, importer=importer_0, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "mod1.pkl", loaded_mod_0)
 
         buffer_1.seek(0)
@@ -521,6 +538,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer_0 = BytesIO()
         with PackageExporter(buffer_0, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("model", "model.pkl", orig_mod)
 
         buffer_0.seek(0)
@@ -534,6 +552,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer_1 = BytesIO()
         with PackageExporter(buffer_1, importer=importer_0, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("res", "scripted_mod.pkl", scripted_mod)
 
         buffer_1.seek(0)
@@ -568,6 +587,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer = BytesIO()
         with PackageExporter(buffer, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("model", "inline.pkl", scripted_inline)
             e.save_pickle("model", "imported.pkl", scripted_imported)
 
@@ -609,6 +629,7 @@ class PackageScriptModuleTest(PackageTestCase):
 
         buffer = BytesIO()
         with PackageExporter(buffer, verbose=False) as e:
+            e.gate_torchscript_serialization = False
             e.save_pickle("model", "inline.pkl", scripted_inline)
             e.save_pickle("model", "imported.pkl", scripted_imported)
 
